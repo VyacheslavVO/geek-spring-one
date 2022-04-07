@@ -1,6 +1,7 @@
+ru\geekbrains\persist\User.class
+ru\geekbrains\EncodingFilter.class
 ru\geekbrains\UserServlet.class
 ru\geekbrains\persist\UserRepository.class
 ru\geekbrains\FirstServlet.class
-ru\geekbrains\persist\User.class
-ru\geekbrains\EncodingFilter.class
+ru\geekbrains\BootstrapListener.class
 ru\geekbrains\FirsHttpServlet.class

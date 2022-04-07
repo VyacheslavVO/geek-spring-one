@@ -6,8 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="less01-servlet-api" />
         <module name="less02-servlet-basics" />
+        <module name="less01-servlet-api" />
+        <module name="lesson-01-servlet-api" />
+        <module name="lesson-02-spring-basics" />
       </profile>
     </annotationProcessing>
   </component>

@@ -10,18 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @WebServlet(urlPatterns = "/user/*")
 public class UserServlet extends HttpServlet {
+
+    private static final Pattern PARAM_PATTERN = Pattern.compile( "\\/(\\d+)" );
 
     private UserRepository userRepository;
 
     @Override
     public void init() throws ServletException {
-        this.userRepository = new UserRepository();
-        this.userRepository.insert(new User("Alex"));
-        this.userRepository.insert(new User("Petr"));
-        this.userRepository.insert(new User("Felip"));
+        this.userRepository = (UserRepository) getServletContext().getAttribute( "userRepository" );
     }
 
     @Override
@@ -36,7 +37,7 @@ public class UserServlet extends HttpServlet {
 
         PrintWriter wr = resp.getWriter();
 
-        if(req.getPathInfo().equals( "/")) {
+        if(req.getPathInfo().equals( "/") || req.getPathInfo() == null) {
             wr.println("<table>");
             wr.println("<tr>");
             wr.println("<th>Id</th>");
@@ -44,12 +45,36 @@ public class UserServlet extends HttpServlet {
             wr.println("</tr>");
             for (User user : userRepository.findAll()) {
                 wr.println( "<tr>" );
-                wr.println( "<td><a href='" + user.getId() + "?id=" + user.getId() + "&name=" + user.getUsername() + "'>" + user.getId() + "</a></td>" );
+                // с параметрами
+                //wr.println( "<td><a href='" + user.getId() + "?id=" + user.getId() + "&name=" + user.getUsername() + "'>" + user.getId() + "</a></td>" );
+                // чистый URL
+                wr.println( "<td><a href='" + getServletContext().getContextPath() + "/user/" + user.getId() + "'>" + user.getId() + "</a></td>" );
                 wr.println( "<td>" + user.getUsername() + "</td>" );
                 wr.println( "</tr>" );
             }
-        } else wr.println("id: " + req.getParameter("id") + "</br>name: " + req.getParameter("name"));
 
-        wr.println("</table>");
+            wr.println("</table>");
+        } else {
+            // мой вариант (передавал параметры)
+            //wr.println("id: " + req.getParameter("id") + "</br>name: " + req.getParameter("name"));
+            // вариант преподавателя (парсил URL)
+            Matcher matcher = PARAM_PATTERN.matcher( req.getPathInfo() );
+            if(matcher.matches()) {
+                long id = Long.parseLong( matcher.group(1) );
+                User user = this.userRepository.findById( id );
+                if(user == null) {
+                    resp.getWriter().println("<p>User not found</p>");
+                    resp.setStatus( 404 );
+                    return;
+                }
+                resp.getWriter().println("<p>Id: " + user.getId() + "</p>");
+                resp.getWriter().println("<p>Username: " + user.getUsername() + "</p>");
+            }
+            else
+            {
+                resp.getWriter().println("<p>Bad parameters</p>");
+                resp.setStatus( 400 );
+            }
+        }
     }
 }
