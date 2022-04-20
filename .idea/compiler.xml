@@ -6,11 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="less02-servlet-basics" />
+        <module name="less02-spring-basics" />
+        <module name="less03-spring-mvc" />
         <module name="less01-servlet-api" />
-        <module name="lesson-01-servlet-api" />
-        <module name="lesson-02-spring-basics" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="less02-servlet-basics" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>

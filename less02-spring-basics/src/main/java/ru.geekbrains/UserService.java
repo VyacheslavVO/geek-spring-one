@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import ru.geekbrains.persist.User;
 import ru.geekbrains.persist.UserRepository;
 
-//@Service
+@Service
 public class UserService {
     private final UserRepository userRepository;
 

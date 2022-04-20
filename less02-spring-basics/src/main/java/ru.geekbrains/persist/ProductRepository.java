@@ -8,11 +8,7 @@ public interface ProductRepository {
 
     Product findById(long id);
 
-    void insert(Product product);
-
-    void update(Product product);
+    void save(Product product);
 
     void delete(long id);
-
-    long getCount();
 }
