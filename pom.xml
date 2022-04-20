@@ -26,6 +26,7 @@
         <module>less01-servlet-api</module>
         <module>less02-spring-basics</module>
         <module>less03-spring-mvc</module>
+        <module>less04-spring-boot</module>
     </modules>
 
 </project>
