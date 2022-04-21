@@ -32,9 +32,9 @@ public class Main {
 //        System.out.println("User with id 1 " + user);
 
         // SELECT HQL/JPQL
-//        List<User> users = em.createQuery("from User u where u.id in (1, 2)", User.class)
-//                .getResultList();
-//        users.forEach(System.out::println);
+        List<User> users = em.createQuery("from User u where u.id in (1, 2)", User.class)
+                .getResultList();
+        users.forEach(System.out::println);
 
         // UPDATE
         // 1

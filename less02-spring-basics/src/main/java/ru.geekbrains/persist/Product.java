@@ -2,6 +2,7 @@ package ru.geekbrains.persist;
 
 import java.util.Objects;
 
+
 public class Product {
 
     private Long id;
