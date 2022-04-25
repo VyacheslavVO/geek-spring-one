@@ -1,39 +1,35 @@
-package ru.geekbrains.persist;
+package ru.geekbrains.dto;
 
-import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
-@Entity
-@Table(name = "users")
-public class User {
+public class UserDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @NotBlank
     private String username;
 
-    @Column(nullable = false, unique = true)
+    @Email
+    @NotBlank
     private String email;
 
-    @Column(nullable = false, length = 512)
+    @Pattern(regexp = "^(?=.*?[0-9])(?=.*?[A-Z]).{8,}$", message = "Password too simple")
+    @NotBlank
     private String password;
 
-    public User() {
+    private String matchingPassword;
+
+    public UserDto() {
     }
 
-    public User(Long id, String username, String email, String password) {
+    public UserDto(Long id, String username, String email, String password) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
-    }
-
-    public User(String username) {
-        this.username = username;
     }
 
     public Long getId() {
@@ -66,5 +62,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getMatchingPassword() {
+        return matchingPassword;
+    }
+
+    public void setMatchingPassword(String matchingPassword) {
+        this.matchingPassword = matchingPassword;
     }
 }

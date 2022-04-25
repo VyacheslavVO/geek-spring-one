@@ -1,34 +1,29 @@
-package ru.geekbrains.persist;
+package ru.geekbrains.dto;
 
-import javax.persistence.*;
+import ru.geekbrains.persist.LineItem;
+
 import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 import java.util.List;
 
-@Entity
-@Table(name = "products")
-public class Product {
+public class ProductDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @NotBlank
     private String title;
 
-    @Column
     private String description;
 
-    @Column(nullable = false)
     private BigDecimal price;
 
-    @OneToMany(mappedBy = "product")
     private List<LineItem> lineItems;
 
-    public Product() {
+    public ProductDto() {
     }
 
-    public Product(String title, String description, BigDecimal price) {
+    public ProductDto(Long id, String title, String description, BigDecimal price) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.price = price;

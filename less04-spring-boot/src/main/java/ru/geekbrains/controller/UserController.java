@@ -6,53 +6,73 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import ru.geekbrains.persist.User;
-import ru.geekbrains.persist.UserRepository;
+import ru.geekbrains.dto.UserDto;
+import ru.geekbrains.service.UserService;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @RequestMapping("/user")
 @Controller
 public class  UserController {
 
-    private final UserRepository userRepository;
+    private final UserService userService;
 
     @Autowired
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping
-    public String listPage(Model model) {
-        model.addAttribute("users", userRepository.findAll());
+    public String listPage(
+            @RequestParam Optional<String> usernameFilter,
+            @RequestParam Optional<String> emailFilter,
+            @RequestParam Optional<Integer> page,
+            @RequestParam Optional<Integer> size,
+            Model model
+    ) {
+        String usernameFilterValue = usernameFilter.
+                filter(val -> !val.isBlank()).
+                orElse(null);
+        String emailFilterValue = emailFilter.
+                filter(val -> !val.isBlank()).
+                orElse(null);
+        Integer pageValue = page.orElse(1) - 1;
+        Integer sizeValue = size.orElse(3);
+        model.addAttribute("users", userService.findUsersByFilter(
+                usernameFilterValue,
+                emailFilterValue,
+                pageValue,
+                sizeValue));
+
         return "user";
     }
 
     // показать в представлении
     @GetMapping("/{id}")
     public String form(@PathVariable long id, Model model) {
-        model.addAttribute("user", userRepository.findById(id)
-                .orElseThrow(() -> new NotFoundExeption("User not found")));
+        model.addAttribute("user", userService.findById(id)
+                .orElseThrow(() -> new NotFoundException("User not found")));
         return "user_form";
     }
 
     // показать в представлении
     @GetMapping("/new")
     public String form(Model model) {
-        model.addAttribute("user", new User(""));
+        model.addAttribute("user", new UserDto());
         return "user_form";
     }
 
     // удалить пользователя
     @DeleteMapping("/{id}")
     public String delete(@PathVariable long id) {
-        userRepository.delete(id);
+        userService.deleteById(id);
         return "redirect:/user";
     }
 
     // отправка формы
     @PostMapping
-    public String save(@Valid User user, BindingResult bindingResult) {
+    public String save(@Valid @ModelAttribute(name = "user") UserDto user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "user_form";
         }
@@ -61,15 +81,15 @@ public class  UserController {
             bindingResult.rejectValue("password", "","Password not match");
             return "user_form";
         }
-        userRepository.save(user);
+        userService.save(user);
         return "redirect:/user";
     }
 
     // если кто-то из контроллеров кидает исключение, то управление передается сюда...
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler
-    public String notFoundExeptionHandler (Model model, NotFoundExeption exeption) {
-        model.addAttribute("message", exeption.getMessage());
+    public String notFoundExceptionHandler (Model model, NotFoundException exception) {
+        model.addAttribute("message", exception.getMessage());
         return "not_found";
     }
 }
