@@ -1,9 +1,16 @@
 package ru.geekbrains.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity         // обязательная аннотация говорит о том, что эта сущность является таблицей
 @Table(name = "users")
+@NamedQueries({
+        @NamedQuery(name = "findAllUsers", query = "select u from User u"),
+        @NamedQuery(name = "countAllUsers", query = "select count (u) from User u"),
+        @NamedQuery(name = "deleteUser", query = "delete from User where id =:id")
+})
 public class User{
 
     @Id         // в ОРМ обязательно должен быть первичный ключ (в нашем случае это id пользователя)
@@ -18,6 +25,30 @@ public class User{
 
     @Column(nullable = false, length = 1024)
     private String password;
+
+    @OneToMany(
+            mappedBy = "user",
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+            orphanRemoval = true
+    )
+    private List<Contact> contacts = new ArrayList<>();
+
+    @OneToMany(
+            mappedBy = "user",
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+            orphanRemoval = true
+    )
+    private List<Contact> products = new ArrayList<>();
+
+    @OneToOne(
+            mappedBy = "user",
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE}
+    )
+    private Customer customer;
+
+    @ManyToMany(mappedBy = "users")
+    private List<Role> roles;
+
     // обязательно должен быть конструктор по умолчанию (без параметров)
     public User() {
     }
@@ -60,6 +91,30 @@ public class User{
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public List<Contact> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(List<Contact> contacts) {
+        this.contacts = contacts;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public List<Role> getRoles() { return roles; }
+
+    public void setRoles(List<Role> roles) { this.roles = roles; }
+
+    public List<Contact> getProducts() { return products; }
+
+    public void setProducts(List<Contact> products) { this.products = products; }
 
     @Override
     public String toString() {

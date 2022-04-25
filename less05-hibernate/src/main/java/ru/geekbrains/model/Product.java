@@ -1,12 +1,15 @@
 package ru.geekbrains.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
 @NamedQueries({
         @NamedQuery(name = "Product.findAll", query = "SELECT a FROM Product a"),
-        @NamedQuery(name = "Product.findById", query = "SELECT a FROM Product a WHERE a.id = :id")
+        @NamedQuery(name = "Product.findById", query = "SELECT a FROM Product a WHERE a.id = :id"),
+        @NamedQuery(name = "Product.delete", query = "SELECT a FROM Product a WHERE a.id = :id")
 })
 public class Product {
 
@@ -19,6 +22,13 @@ public class Product {
 
     @Column
     private int price;
+
+    @OneToMany(
+            mappedBy = "user",
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+            orphanRemoval = true
+    )
+    private List<Contact> contacts = new ArrayList<>();
 
     public Product() {
     }

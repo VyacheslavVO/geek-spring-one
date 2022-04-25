@@ -3,9 +3,7 @@ package ru.geekbrains;
 
 import org.hibernate.cfg.Configuration;
 import ru.geekbrains.model.Product;
-import ru.geekbrains.model.ProductRepository;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import java.util.List;
 import java.util.Scanner;
@@ -18,9 +16,8 @@ public class ProductDao {
                 .configure("hibernate.cfg.xml")
                 .buildSessionFactory();
         // менеджер для выполнения операций с БД
-        EntityManager em = emFactory.createEntityManager();
 
-        ProductRepository products = new ProductRepository(em);
+        ProductRepository products = new ProductRepository(emFactory);
 
         Scanner scn = new Scanner(System.in);
 
@@ -35,12 +32,12 @@ public class ProductDao {
                     product.setTitle(scn.nextLine());
                     System.out.print("Enter price: ");
                     product.setPrice(scn.nextInt());
-                    products.saveOrUpdate(product);
+                    products.save(product);
                     System.out.println("Product added");
                     break;
                 case "DELETE":
                     System.out.println("Enter id or skip: ");
-                    products.deleteById(scn.nextLong());
+                    products.delete(scn.nextLong());
                     System.out.println("Product deleted");
                     break;
                 case "LIST":
@@ -49,11 +46,10 @@ public class ProductDao {
                     break;
                 case "PRODUCT":
                     System.out.println("Enter id or skip: ");
-                    product = products.findById(scn.nextLong());
-                    System.out.println(product);
+                    System.out.println(products.findById(scn.nextLong()));
                     break;
                 case "EXIT":
-                    em.close();
+                    products.exit();
                     emFactory.close();
                     return;
             }

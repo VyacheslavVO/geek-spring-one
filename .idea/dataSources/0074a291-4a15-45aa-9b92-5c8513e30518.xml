@@ -1009,41 +1009,112 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <table id="284" parent="274" name="users">
+    <table id="284" parent="274" name="contacts">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <column id="285" parent="284" name="id">
+    <table id="285" parent="274" name="products">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="286" parent="274" name="users">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <column id="287" parent="284" name="id">
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="286" parent="284" name="email">
+    <column id="288" parent="284" name="contact">
       <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="287" parent="284" name="password">
-      <DataType>varchar(1024)|0s</DataType>
+    <column id="289" parent="284" name="contactType">
+      <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="288" parent="284" name="username">
-      <DataType>varchar(255)|0s</DataType>
-      <NotNull>1</NotNull>
+    <column id="290" parent="284" name="user_id">
+      <DataType>bigint|0s</DataType>
       <Position>4</Position>
     </column>
-    <index id="289" parent="284" name="UK_r43af9ap4edm43mmtq01oddj6">
-      <ColNames>username</ColNames>
+    <foreign-key id="291" parent="284" name="FKna8bddygr3l3kq1imghgcskt8">
+      <ColNames>user_id</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>users</RefTableName>
+    </foreign-key>
+    <index id="292" parent="284" name="FKna8bddygr3l3kq1imghgcskt8">
+      <ColNames>user_id</ColNames>
       <Type>btree</Type>
-      <Unique>1</Unique>
     </index>
-    <key id="290" parent="284" name="PRIMARY">
+    <key id="293" parent="284" name="PRIMARY">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <key id="291" parent="284" name="UK_r43af9ap4edm43mmtq01oddj6">
+    <column id="294" parent="285" name="id">
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="295" parent="285" name="price">
+      <DataType>int|0s</DataType>
+      <Position>2</Position>
+    </column>
+    <column id="296" parent="285" name="title">
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <index id="297" parent="285" name="UK_8xtpej5iy2w4cte2trlvrlayy">
+      <ColNames>title</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="298" parent="285" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <key id="299" parent="285" name="UK_8xtpej5iy2w4cte2trlvrlayy">
+      <ColNames>title</ColNames>
+      <UnderlyingIndexName>UK_8xtpej5iy2w4cte2trlvrlayy</UnderlyingIndexName>
+    </key>
+    <column id="300" parent="286" name="id">
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="301" parent="286" name="email">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>2</Position>
+    </column>
+    <column id="302" parent="286" name="password">
+      <DataType>varchar(1024)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="303" parent="286" name="username">
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <index id="304" parent="286" name="UK_r43af9ap4edm43mmtq01oddj6">
+      <ColNames>username</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="305" parent="286" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <key id="306" parent="286" name="UK_r43af9ap4edm43mmtq01oddj6">
       <ColNames>username</ColNames>
       <UnderlyingIndexName>UK_r43af9ap4edm43mmtq01oddj6</UnderlyingIndexName>
     </key>
