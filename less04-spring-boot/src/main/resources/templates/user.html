@@ -38,6 +38,27 @@
             <a class="btn btn-primary" th:href="@{/user/new}">Add User</a>
         </div>
 
+        <div class="col-12 mt-3">
+            <form class="form-inline">
+                <div class="form-group mb-2 mr-2">
+                    <label for="usernameFilter" class="sr-only">Username filter</label>
+                    <input type="text" class="form-control" id="usernameFilter" th:value="${param.usernameFilter}"
+                           name="usernameFilter" placeholder="Username filter">
+                </div>
+
+                <button type="submit" class="btn btn-primary mb-2">Apply</button>
+            </form>
+            <form class="form-inline">
+                <div class="form-group mb-2 mr-2">
+                    <label for="emailFilter" class="sr-only">Email filter</label>
+                    <input type="text" class="form-control" id="emailFilter" th:value="${param.emailFilter}"
+                           name="emailFilter" placeholder="Email filter">
+                </div>
+
+                <button type="submit" class="btn btn-primary mb-2">Apply</button>
+            </form>
+        </div>
+
         <div class="col-12">
             <table class="table table-bordered my-2">
                 <thead>
@@ -49,16 +70,19 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="user : ${users}">
+                <tr th:unless="${users.isEmpty()}" th:each="user : ${users}">
                     <th scope="row" th:text="${user.id}">1</th>
                     <td th:text="${user.username}">Alex</td>
                     <td th:text="${user.email}">Alex@mail.com</td>
-                    <td>
+                    <td th:unless="${users.isEmpty()}">
                         <a class="btn btn-success" th:href="@{/user/{id}(id = ${user.id})}"><i class="fas fa-edit"></i></a>
                         <form class="d-inline" th:method="delete" th:action="@{/user/{id}/(id = ${user.id})}">
                             <button class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
                         </form>
                     </td>
+                </tr>
+                <tr th:if="${users.isEmpty()}">
+                    <td colspan="4">no data</td>
                 </tr>
                 </tbody>
             </table>

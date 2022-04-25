@@ -1,43 +1,52 @@
 package ru.geekbrains.persist;
 
-import javax.annotation.PostConstruct;
-import java.util.ArrayList;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.Param;
+
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicLong;
 
-public class ProductRepository {
+public interface ProductRepository extends JpaRepository<Product, Long> {
+    List<Product> findProductByTitleLike(@Param("title") String title);
 
-    private final Map<Long, Product> productMap = new ConcurrentHashMap<>();
+//    @PersistenceContext
+//    private EntityManager em;
 
-    private final AtomicLong identity = new AtomicLong(0);
-
-    @PostConstruct
-    public void init() {
-        this.save(new Product("User 1"));
-        this.save(new Product("User 2"));
-        this.save(new Product("User 3"));
-        this.save(new Product("User 4"));
-        this.save(new Product("User 5"));
-    }
-
-    public List<Product> findAll() {
-        return new ArrayList<>(productMap.values());
-    }
-
-    public Optional<Product> findById(long id) {
-        return Optional.ofNullable(productMap.get(id));
-    }
-
-    public Product save(Product product) {
-        if(product.getId() == null) { product.setId(identity.incrementAndGet()); }
-        productMap.put(product.getId(), product);
-        return product;
-    }
-
-    public void delete(long id) {
-        productMap.remove(id);
-    }
+//    @PostConstruct
+//    public void init() {
+//        try {
+//            em.getTransaction().begin();
+//            this.save(new Product("Product 1"));
+//            this.save(new Product("Product 2"));
+//            this.save(new Product("Product 3"));
+//            this.save(new Product("Product 4"));
+//            this.save(new Product("Product 5"));
+//            em.getTransaction().commit();
+//        } catch (Exception e) {
+//            em.getTransaction().rollback();
+//        }
+//    }
+//
+//
+//    public List<Product> findAll() {
+//        return em.createQuery("select p from Product p", Product.class).getResultList();
+//    }
+//
+//    public Optional<Product> findById(long id) {
+//        return Optional.ofNullable(em.find(Product.class, id));
+//    }
+//
+//    @Transactional
+//    public Product save(Product product) {
+//        if(product.getId() == null) {
+//            em.persist(product);
+//        }
+//        em.merge(product);
+//        return product;
+//    }
+//
+//    @Transactional
+//    public void delete(long id) {
+//        em.createQuery("delete from Product where id =: id").setParameter("id", id)
+//                .executeUpdate();
+//    }
 }

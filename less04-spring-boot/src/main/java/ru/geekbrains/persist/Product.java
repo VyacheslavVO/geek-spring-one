@@ -1,15 +1,25 @@
 package ru.geekbrains.persist;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
+@Entity
+@Table(name = "products")
 public class Product {
 
+    @Id
+    @GeneratedValue
     private Long id;
 
     @NotBlank
+    @Column(nullable = false, unique = true)
     private String title;
 
+    @Column
     private long cost;
+
+    public Product() {
+    }
 
     public Product(String title) { this.title = title; }
 

@@ -1,25 +1,37 @@
 package ru.geekbrains.persist;
 
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
+@Entity
+@Table(name = "users")
 public class User {
 
+    @Id
+    @GeneratedValue
     private Long id;
 
     @NotBlank
+    @Column(nullable = false, unique = true)
     private String username;
 
     @Email
     @NotBlank
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Pattern(regexp = "^(?=.*?[0-9])(?=.*?[A-Z]).{8,}$", message = "Password too simple")
     @NotBlank
+    @Column(nullable = false, length = 512)
     private String password;
 
+    @Transient      // не сохраняем в БД это поле
     private String matchingPassword;
+
+    public User() {
+    }
 
     public User(String username) {
         this.username = username;

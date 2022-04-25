@@ -10,6 +10,7 @@ import ru.geekbrains.persist.User;
 import ru.geekbrains.persist.UserRepository;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @RequestMapping("/user")
 @Controller
@@ -23,8 +24,21 @@ public class  UserController {
     }
 
     @GetMapping
-    public String listPage(Model model) {
-        model.addAttribute("users", userRepository.findAll());
+    public String listPage(
+            @RequestParam Optional<String> usernameFilter,
+            @RequestParam Optional<String> emailFilter,
+            Model model
+    ) {
+        if(usernameFilter.isEmpty() || usernameFilter.get().isBlank()) {
+            model.addAttribute("users", userRepository.findAll());
+        } else {
+            model.addAttribute("users", userRepository.findUserByUsernameLike("%" + usernameFilter.get() + "%"));
+        }
+        if(emailFilter.isEmpty() || emailFilter.get().isBlank()) {
+            model.addAttribute("users", userRepository.findAll());
+        } else {
+            model.addAttribute("users", userRepository.findUserByEmailLike("%" + emailFilter.get() + "%"));
+        }
         return "user";
     }
 
@@ -46,7 +60,7 @@ public class  UserController {
     // удалить пользователя
     @DeleteMapping("/{id}")
     public String delete(@PathVariable long id) {
-        userRepository.delete(id);
+        userRepository.deleteById(id);
         return "redirect:/user";
     }
 
