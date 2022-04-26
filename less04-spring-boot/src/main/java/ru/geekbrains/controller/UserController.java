@@ -29,21 +29,31 @@ public class  UserController {
             @RequestParam Optional<String> emailFilter,
             @RequestParam Optional<Integer> page,
             @RequestParam Optional<Integer> size,
+            @RequestParam Optional<String> sortField,
+            @RequestParam Optional<String> sortDirection,
             Model model
     ) {
-        String usernameFilterValue = usernameFilter.
-                filter(val -> !val.isBlank()).
-                orElse(null);
-        String emailFilterValue = emailFilter.
-                filter(val -> !val.isBlank()).
-                orElse(null);
+        String usernameFilterValue = usernameFilter
+                .filter(val -> !val.isBlank())
+                .orElse(null);
+        String emailFilterValue = emailFilter
+                .filter(val -> !val.isBlank())
+                .orElse(null);
         Integer pageValue = page.orElse(1) - 1;
         Integer sizeValue = size.orElse(3);
+        String sortFieldValue = sortField
+                .filter(val -> !val.isBlank())
+                .orElse("id");
+        String sortDirectionValue = sortDirection
+                .filter(val -> !val.isBlank())
+                .orElse(null);
         model.addAttribute("users", userService.findUsersByFilter(
                 usernameFilterValue,
                 emailFilterValue,
                 pageValue,
-                sizeValue));
+                sizeValue,
+                sortFieldValue,
+                sortDirectionValue));
 
         return "user";
     }

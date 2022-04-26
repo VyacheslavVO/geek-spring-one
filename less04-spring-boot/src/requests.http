@@ -1,0 +1,23 @@
+GET http://localhost:8091/mvc-app/rest/v1/product/all
+
+###
+
+POST http://localhost:8091/mvc-app/rest/v1/product/
+Content-Type: application/json
+
+    {
+      "title": "Product",
+      "price": 40.2
+    }
+
+###
+
+PUT http://localhost:8091/mvc-app/rest/v1/user/
+Content-Type: application/json
+
+{
+  "id": 16,
+  "username": "Slava 17",
+  "email": "ale23x5x123@mail.ru",
+  "password": "Q123456y67"
+}

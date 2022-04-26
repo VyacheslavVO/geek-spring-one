@@ -6,6 +6,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import ru.geekbrains.controller.ProductSpecifications;
 import ru.geekbrains.controller.UserSpecifications;
 import ru.geekbrains.dto.ProductDto;
 import ru.geekbrains.dto.UserDto;
@@ -27,7 +28,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Page<ProductDto> findProductsByFilter(String titleFilter, Integer page, Integer size) {
+    public Page<ProductDto> findProductsByFilter(String titleFilter, Integer page, Integer size, String sortField, String sortDirection) {
 
         // фильтр через CriteriaBuilder и спецификации
         Specification<Product> spec = Specification.where(null);

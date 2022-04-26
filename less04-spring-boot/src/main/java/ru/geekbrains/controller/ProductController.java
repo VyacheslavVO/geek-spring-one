@@ -6,22 +6,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import ru.geekbrains.dto.ProductDto;
 import ru.geekbrains.persist.Product;
-import ru.geekbrains.persist.ProductRepository;
+import ru.geekbrains.service.ProductService;
 
 import javax.validation.Valid;
-import java.math.BigDecimal;
 import java.util.Optional;
 
 @RequestMapping("/product")
 @Controller
 public class ProductController {
 
-    private final ProductRepository productRepository;
+    private final ProductService productService;
 
     @Autowired
-    public ProductController(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    public ProductController(ProductService productService) {
+        this.productService = productService;
     }
 
     @GetMapping
@@ -29,6 +29,8 @@ public class ProductController {
             @RequestParam Optional<String> titleFilter,
             @RequestParam Optional<Integer> page,
             @RequestParam Optional<Integer> size,
+            @RequestParam Optional<String> sortField,
+            @RequestParam Optional<String> sortDirection,
             Model model
     ) {
 //        if(titleFilter.isEmpty() || titleFilter.get().isBlank()) {
@@ -42,10 +44,18 @@ public class ProductController {
                 orElse(null);
         Integer pageValue = page.orElse(1) - 1;
         Integer sizeValue = size.orElse(3);
-        model.addAttribute("products", productService.findProductByFilter(
+        String sortFieldValue = sortField
+                .filter(val -> !val.isBlank())
+                .orElse("id");
+        String sortDirectionValue = sortDirection
+                .filter(val -> !val.isBlank())
+                .orElse(null);
+        model.addAttribute("products", productService.findProductsByFilter(
                 titleFilterValue,
                 pageValue,
-                sizeValue));
+                sizeValue,
+                sortFieldValue,
+                sortDirectionValue));
 
         return "product";
     }
@@ -53,7 +63,7 @@ public class ProductController {
     // показать в представлении редактирование продукта
     @GetMapping("/{id}")
     public String form(@PathVariable long id, Model model) {
-        model.addAttribute("product", productRepository.findById(id)
+        model.addAttribute("product", productService.findById(id)
                 .orElseThrow(() -> new NotFoundException("Product not found")));
         return "product_form";
     }
@@ -68,17 +78,17 @@ public class ProductController {
     // удалить продукт
     @DeleteMapping("/{id}")
     public String delete(@PathVariable long id) {
-        productRepository.deleteById(id);
+        productService.deleteById(id);
         return "redirect:/product";
     }
 
     // отправка формы
     @PostMapping
-    public String save(@Valid Product product, BindingResult bindingResult) {
+    public String save(@Valid @ModelAttribute(name = "product") ProductDto product, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "product_form";
         }
-        productRepository.save(product);
+        productService.save(product);
         return "redirect:/product";
     }
 
