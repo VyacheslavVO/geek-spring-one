@@ -1,0 +1,1 @@
+Column 'price' cannot be null

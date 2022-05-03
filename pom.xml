@@ -28,6 +28,7 @@
         <module>less03-spring-mvc</module>
         <module>less04-spring-boot</module>
         <module>less05-hibernate</module>
+        <module>less10-rest-client</module>
     </modules>
 
 </project>

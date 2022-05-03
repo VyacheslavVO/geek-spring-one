@@ -1,0 +1,36 @@
+{
+  "content": [
+    {
+      "id": 17,
+      "title": "Product",
+      "description": null,
+      "price": 40.20,
+      "lineItems": null
+    }
+  ],
+  "pageable": {
+    "sort": {
+      "empty": false,
+      "sorted": true,
+      "unsorted": false
+    },
+    "offset": 0,
+    "pageNumber": 0,
+    "pageSize": 3,
+    "unpaged": false,
+    "paged": true
+  },
+  "last": true,
+  "totalPages": 1,
+  "totalElements": 1,
+  "number": 0,
+  "size": 3,
+  "sort": {
+    "empty": false,
+    "sorted": true,
+    "unsorted": false
+  },
+  "first": true,
+  "numberOfElements": 1,
+  "empty": false
+}

@@ -1,0 +1,392 @@
+GET http://localhost:8091/mvc-app/rest/v1/user/all
+
+<> 2022-05-03T214907.200.json
+
+###
+
+GET http://localhost:8091/mvc-app/rest/v1/user/all
+
+<> 2022-05-03T213032.200.json
+
+###
+
+GET http://localhost:8091/mvc-app/rest/v1/user/all
+
+<> 2022-05-03T212716.200.json
+
+###
+
+GET http://localhost:8091/mvc-app/rest/v1/user/all
+
+<> 2022-05-03T212654.200.json
+
+###
+
+GET http://localhost:8091/mvc-app/rest/v1/user/all
+
+<> 2022-05-03T210547.200.json
+
+###
+
+GET http://localhost:8091/mvc-app/rest/v1/user/all
+
+<> 2022-05-03T210135.200.json
+
+###
+
+GET http://localhost:8091/mvc-app/rest/v1/user/all
+
+<> 2022-05-03T201911.200.json
+
+###
+
+GET http://localhost:8091/mvc-app/rest/v1/product/all
+
+<> 2022-05-03T201850.200.json
+
+###
+
+GET http://localhost:8091/mvc-app/rest/v1/product/all
+
+<> 2022-04-27T194945.200.json
+
+###
+
+POST http://localhost:8091/mvc-app/rest/v1/product/
+Content-Type: application/json
+
+    {
+      "title": "Product",
+      "price": 40.2
+    }
+
+<> 2022-04-27T194935.200.json
+
+###
+
+GET http://localhost:8091/mvc-app/rest/v1/product/all
+
+<> 2022-04-27T194929.200.json
+
+###
+
+GET http://localhost:8091/mvc-app/rest/v1/user/all
+
+<> 2022-04-27T194905.200.json
+
+###
+
+GET http://localhost:8091/mvc-app/rest/v1/product/all
+
+<> 2022-04-27T194824.200.json
+
+###
+
+GET http://localhost:8091/mvc-app/rest/v1/user/all
+
+<> 2022-04-27T194807.200.json
+
+###
+
+GET http://localhost:8091/mvc-app/rest/v1/user/all
+
+<> 2022-04-27T183355.500.json
+
+###
+
+GET http://localhost:8091/mvc-app/rest/v1/user/all
+
+<> 2022-04-27T183043.500.json
+
+###
+
+GET http://localhost:8091/mvc-app/rest/v1/user/all
+
+<> 2022-04-27T183022.500.json
+
+###
+
+GET http://localhost:8091/mvc-app/rest/v1/product/all
+
+<> 2022-04-27T182946.200.json
+
+###
+
+POST http://localhost:8091/mvc-app/rest/v1/product/
+Content-Type: application/json
+
+    {
+      "title": "Product",
+      "price": 40.2
+    }
+
+<> 2022-04-27T182938.500.txt
+
+###
+
+POST http://localhost:8091/mvc-app/rest/v1/product/
+Content-Type: application/json
+
+    {
+      "id": 10,
+      "title": "Product",
+      "price": 40.2
+    }
+
+<> 2022-04-27T182929.400.txt
+
+###
+
+POST http://localhost:8091/mvc-app/rest/v1/product/
+Content-Type: application/json
+
+    {
+      "id": "15",
+      "title": "Product",
+      "price": 40.2
+    }
+
+<> 2022-04-27T182920.400.txt
+
+###
+
+POST http://localhost:8091/mvc-app/rest/v1/product/
+Content-Type: application/json
+
+    {
+      "id": "15",
+      "title": "Product",
+      "price": 40.2
+    }
+
+<> 2022-04-27T182840.400.txt
+
+###
+
+POST http://localhost:8091/mvc-app/rest/v1/product/
+Content-Type: application/json
+
+    {
+      "id": 15,
+      "title": "Product",
+      "price": 40.2
+    }
+
+<> 2022-04-27T182822.400.txt
+
+###
+
+POST http://localhost:8091/mvc-app/rest/v1/product/
+Content-Type: application/json
+
+    {
+      "title": "Product",
+      "price": 40.2
+    }
+
+<> 2022-04-27T182751.500.txt
+
+###
+
+POST http://localhost:8091/mvc-app/rest/v1/product/
+Content-Type: application/json
+
+    {
+      "title": "Product",
+      "prise": 40.2
+    }
+
+<> 2022-04-27T182738.500.txt
+
+###
+
+GET http://localhost:8091/mvc-app/rest/v1/product/all
+
+<> 2022-04-27T182615.200.json
+
+###
+
+GET http://localhost:8091/mvc-app/rest/v1/user/all
+
+<> 2022-04-27T171302.500.json
+
+###
+
+GET http://localhost:8091/mvc-app/rest/v1/user/all
+
+<> 2022-04-27T171255.500.json
+
+###
+
+GET http://localhost:8091/mvc-app/rest/v1/product/all
+
+<> 2022-04-27T171139.404.json
+
+###
+
+PUT http://localhost:8091/mvc-app/rest/v1/user/
+Content-Type: application/json
+
+{
+  "id": 16,
+  "username": "Slava 17",
+  "email": "ale23x5x123@mail.ru",
+  "password": "Q123456y67"
+}
+
+<> 2022-04-27T134428.200.json
+
+###
+
+PUT http://localhost:8091/mvc-app/rest/v1/user/
+Content-Type: application/json
+
+{
+  "id": 16,
+  "username": "Slava 17",
+  "email": "ale23x5x123@mail.ru",
+  "password": "Q123456y67"
+}
+
+<> 2022-04-27T134421.200.json
+
+###
+
+PUT http://localhost:8091/mvc-app/rest/v1/user/
+Content-Type: application/json
+
+{
+  "id": 16,
+  "username": "Slava 11",
+  "email": "ale23x5x123@mail.ru",
+  "password": "Q123456y67"
+}
+
+
+<> 2022-04-27T134407.200.json
+
+###
+
+POST http://localhost:8091/mvc-app/rest/v1/user/
+Content-Type: application/json
+
+    {
+      "username": "Slava 11",
+      "email": "ale23x5x123@mail.ru",
+      "password": "Q123456y67"
+    }
+
+<> 2022-04-27T133959.200.json
+
+###
+
+POST http://localhost:8091/mvc-app/rest/v1/user/
+Content-Type: application/json
+
+    {
+      "username": "Slava 11",
+      "email": "ale23xxx123@mail.ru",
+      "password": "Q123456y67"
+    }
+
+<> 2022-04-27T133947.500.txt
+
+###
+
+POST http://localhost:8091/mvc-app/rest/v1/user/
+Content-Type: application/json
+
+    {
+      "username": "Slava 10",
+      "email": "ale23xxx123@mail.ru",
+      "password": "Q123456y67"
+    }
+
+<> 2022-04-27T133931.200.json
+
+###
+
+POST http://localhost:8091/mvc-app/rest/v1/user/14
+Content-Type: application/json
+
+    {
+      "username": "Slava 2",
+      "email": "alexxxx123@mail.ru",
+      "password": "Q123456y67"
+    }
+
+<> 2022-04-27T133747.404.json
+
+###
+
+POST http://localhost:8091/mvc-app/rest/v1/user
+Content-Type: application/json
+
+    {
+      "id": 14,
+      "username": "Slava 2",
+      "email": "alexxxx123@mail.ru",
+      "password": "Q123456y67"
+    }
+
+<> 2022-04-27T133729.400.txt
+
+###
+
+GET http://localhost:8091/mvc-app/rest/v1/user/all
+
+<> 2022-04-27T133710.200.json
+
+###
+
+POST http://localhost:8091/mvc-app/rest/v1/user
+Content-Type: application/json
+
+    {
+      "username": "Slava 2",
+      "email": "alexxxx123@mail.ru",
+      "password": "Q123456y67"
+    }
+
+<> 2022-04-27T133701.500.txt
+
+###
+
+POST http://localhost:8091/mvc-app/rest/v1/user
+Content-Type: application/json
+
+    {
+      "username": "Slava 123",
+      "email": "alexxxx123@mail.com",
+      "password": "Q123456y"
+    }
+
+<> 2022-04-27T133424.500.txt
+
+###
+
+POST http://localhost:8091/mvc-app/rest/v1/user
+Content-Type: application/json
+
+    {
+      "username": "Slava 123",
+      "email": "alexxxx123@mail.com",
+      "password": "Q123456y"
+    }
+
+<> 2022-04-27T133352.500.txt
+
+###
+
+GET http://localhost:8091/mvc-app/rest/v1/user/all
+
+<> 2022-04-27T132906.200.json
+
+###
+
+GET http://localhost:8091/mvc-app/rest/v1/user/all
+
+<> 2022-04-27T131447.200.json
+
+###
+

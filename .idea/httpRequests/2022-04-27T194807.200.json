@@ -1,0 +1,47 @@
+{
+  "content": [
+    {
+      "id": 16,
+      "username": "Slava 17",
+      "email": "ale23x5x123@mail.ru",
+      "password": null
+    },
+    {
+      "id": 14,
+      "username": "Slava 10",
+      "email": "ale23xxx123@mail.ru",
+      "password": null
+    },
+    {
+      "id": 13,
+      "username": "tyjtukyi,i",
+      "email": "rreyjuki_23@njojnkn.rrr",
+      "password": null
+    }
+  ],
+  "pageable": {
+    "sort": {
+      "empty": false,
+      "sorted": true,
+      "unsorted": false
+    },
+    "offset": 0,
+    "pageNumber": 0,
+    "pageSize": 3,
+    "unpaged": false,
+    "paged": true
+  },
+  "last": false,
+  "totalPages": 3,
+  "totalElements": 9,
+  "number": 0,
+  "size": 3,
+  "sort": {
+    "empty": false,
+    "sorted": true,
+    "unsorted": false
+  },
+  "first": true,
+  "numberOfElements": 3,
+  "empty": false
+}

@@ -1,4 +1,4 @@
-GET http://localhost:8091/mvc-app/rest/v1/product/all
+GET http://localhost:8091/mvc-app/rest/v1/user/all
 
 ###
 
