@@ -7,13 +7,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import ru.geekbrains.controller.ProductSpecifications;
-import ru.geekbrains.controller.UserSpecifications;
 import ru.geekbrains.dto.ProductDto;
-import ru.geekbrains.dto.UserDto;
 import ru.geekbrains.persist.Product;
 import ru.geekbrains.persist.ProductRepository;
-import ru.geekbrains.persist.User;
-import ru.geekbrains.persist.UserRepository;
 
 import java.util.Optional;
 

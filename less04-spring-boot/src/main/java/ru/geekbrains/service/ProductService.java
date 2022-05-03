@@ -2,7 +2,6 @@ package ru.geekbrains.service;
 
 import org.springframework.data.domain.Page;
 import ru.geekbrains.dto.ProductDto;
-import ru.geekbrains.dto.UserDto;
 
 import java.util.Optional;
 
