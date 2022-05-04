@@ -46,7 +46,7 @@ public class  UserController {
                 .orElse("id");
         String sortDirectionValue = sortDirection
                 .filter(val -> !val.isBlank())
-                .orElse(null);
+                .orElse("up");
         model.addAttribute("users", userService.findUsersByFilter(
                 usernameFilterValue,
                 emailFilterValue,

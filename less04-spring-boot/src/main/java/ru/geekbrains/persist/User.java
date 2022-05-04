@@ -1,9 +1,7 @@
 package ru.geekbrains.persist;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "users")
@@ -20,16 +18,21 @@ public class User {
     private String email;
 
     @Column(nullable = false, length = 512)
+    @NotBlank
     private String password;
+
+    @Column
+    private String role;
 
     public User() {
     }
 
-    public User(Long id, String username, String email, String password) {
+    public User(Long id, String username, String email, String password, String role) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.role = role;
     }
 
     public User(String username) {
@@ -67,4 +70,8 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getRole() { return role; }
+
+    public void setRole(String role) { this.role = role; }
 }

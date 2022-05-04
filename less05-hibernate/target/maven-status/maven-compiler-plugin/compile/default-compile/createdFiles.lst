@@ -1,0 +1,10 @@
+ru\geekbrains\Main.class
+ru\geekbrains\model\Contact$ContactType.class
+ru\geekbrains\UserRepository.class
+ru\geekbrains\model\User.class
+ru\geekbrains\model\Role.class
+ru\geekbrains\ProductDao.class
+ru\geekbrains\ProductRepository.class
+ru\geekbrains\model\Contact.class
+ru\geekbrains\model\Product.class
+ru\geekbrains\model\Customer.class

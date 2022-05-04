@@ -11,7 +11,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>5.3.18</version>
+            <version>5.3.17</version>
         </dependency>
     </dependencies>
     <packaging>pom</packaging>
@@ -28,7 +28,6 @@
         <module>less03-spring-mvc</module>
         <module>less04-spring-boot</module>
         <module>less05-hibernate</module>
-        <module>less10-rest-client</module>
     </modules>
 
 </project>

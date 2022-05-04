@@ -17,7 +17,8 @@ Content-Type: application/json
 
 {
   "id": 16,
-  "username": "Slava 17",
-  "email": "ale23x5x123@mail.ru",
-  "password": "Q123456y67"
+  "username": "Slava 157",
+  "email": "ale2dddx123@mail.ru",
+  "password": "Q123456y67",
+  "role": "ADMIN"
 }

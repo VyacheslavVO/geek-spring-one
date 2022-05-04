@@ -19,20 +19,23 @@ public class UserDto {
     private String email;
 
     @Pattern(regexp = "^(?=.*?[0-9])(?=.*?[A-Z]).{8,}$", message = "Password too simple")
-    @NotBlank
     private String password;
 
     @JsonIgnore
     private String matchingPassword;
 
+    @NotBlank
+    private String role;
+
     public UserDto() {
     }
 
-    public UserDto(Long id, String username, String email, String password) {
+    public UserDto(Long id, String username, String email, String password, String role) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.role = role;
     }
 
     public Long getId() {
@@ -74,4 +77,8 @@ public class UserDto {
     public void setMatchingPassword(String matchingPassword) {
         this.matchingPassword = matchingPassword;
     }
+
+    public String getRole() { return role; }
+
+    public void setRole(String role) { this.role = role; }
 }
